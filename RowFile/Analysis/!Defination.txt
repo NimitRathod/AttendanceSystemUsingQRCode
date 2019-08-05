@@ -1,0 +1,50 @@
+Project Title :- Attendance System using QR-Code
+
+DB:-
+UserManagment :- 
+User :- 
+	ID 					PK
+	Name				String(100)
+	Email				String(100)
+	Email_Verified			String(100)
+	Password			String(100)
+	remember_token			String(191)
+	created_at			timestamp
+	updated_at			timestamp
+Role :-
+	ID 					PK
+	Name				String(191)
+	guard_name			String(100)
+	created_at			timestamp
+	updated_at			timestamp
+Permission :-
+	ID 					PK
+	Name				String(191)
+	guard_name			String(100)
+	created_at			timestamp
+	updated_at			timestamp
+role_has_permissions :-
+	permission_id			FK
+	role_id					FK
+model_has_roles :-
+		role_id				FK
+		model_type			String(100)
+		model_id			bigint(20)
+StudentsMaster
+	ID						PK
+	Name					String(100)
+	EMail					String(100)
+	Streem					String(25)
+	Batch					String(25)
+	Division				String(25)
+	Created					TimeStemp
+	updated					TimeStemp
+Lecture
+	ID						PK
+	Lecture					String(50)
+	Lecture_Slot
+	time
+Attendance
+	ID						PK
+	Lecture_ID				FK 
+	StudentList
