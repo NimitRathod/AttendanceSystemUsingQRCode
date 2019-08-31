@@ -20,5 +20,5 @@
 <![endif]-->
 
 <!-- Google Font -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('backend/dist/css/custome/MyCustome.css') }}">

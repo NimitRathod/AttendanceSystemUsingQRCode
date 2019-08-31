@@ -30,7 +30,6 @@ Route::group(['prefix'=>'/bck','middleware' => ['auth']], function () {
         return view('backend.default');
     });
 
-
     //Profile
     Route::get('/profile', function () {
         return view('backend.templates.profile.show');
@@ -47,9 +46,6 @@ Route::group(['prefix'=>'/bck','middleware' => ['auth']], function () {
     Route::resource('roles', 'spatie\RoleController');
     Route::get('permissions/getData', ['as'=>'permissions.getData','uses'=>'spatie\PermissionController@getData']);
     Route::resource('permissions', 'spatie\PermissionController');
-
-    Route::get('products', ['uses'=>'ProductController@index']);
-    Route::get('products/getProducts', ['as'=>'products.getProducts','uses'=>'ProductController@getProducts']);
 
     Route::view('changePassword', 'backend.templates.All_Pages.changePassword')->name('change_password');
 });

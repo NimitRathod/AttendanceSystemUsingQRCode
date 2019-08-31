@@ -103,8 +103,8 @@ class UserController extends Controller
     {
         abort_unless(\Gate::allows('user-delete'), 403);
 
-        // return $id;
         $userDestroy = User::find($id);
+        // return $id;
         $userDestroy->delete();
 
         return redirect()->route('users.index')

@@ -14,7 +14,7 @@ $title = ucfirst(explode(".",Request::route()->getName())[0]); ?>
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    @include("backend.partials.form_error_alert")
+    @include("backend.partials.flash-message")
 </section>
 
 <!-- Main content -->
