@@ -47,5 +47,16 @@ Route::group(['prefix'=>'/bck','middleware' => ['auth']], function () {
     Route::get('permissions/getData', ['as'=>'permissions.getData','uses'=>'spatie\PermissionController@getData']);
     Route::resource('permissions', 'spatie\PermissionController');
 
+
+    Route::resource('qrcode','Backend\qrcodecontroller');
+
+    Route::get('qrcode', function () {
+      \QrCode::size(500)
+      ->format('png')
+      ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
+  })->name('qrcode');
+
     Route::view('changePassword', 'backend.templates.All_Pages.changePassword')->name('change_password');
+
+
 });

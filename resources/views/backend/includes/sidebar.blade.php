@@ -63,8 +63,8 @@
                 </li>
                 @endcan
             </ul>
-
         </li>
+
         <li class="treeview @if(explode(".",Request::route()->getName())[0] == 'permissions') {{ 'active' }} @endif">
             <a href="#">
                 <i class="fa fa-qrcode" aria-hidden="true"></i> <span>QRCode Manage</span>
@@ -75,17 +75,9 @@
             <ul class="treeview-menu">
                 @can('user-create')
                 <li class="@if(explode(".",Request::route()->getName())[0] == 'permissions') {{ 'active' }} @endif">
-                    <a href="{{ route('permissions.create') }}">
+                    <a href="{{ route('qrcode.create') }}">
                         <i class="fa fa-users"></i>
                         {{ trans('globle.create') }}
-                    </a>
-                </li>
-                @endcan
-                @can('user-list')
-                <li class="@if(explode(".",Request::route()->getName())[0] == 'permissions') {{ 'active' }} @endif">
-                    <a href="{{ route('permissions.index') }}">
-                        <i class="fa fa-list"></i>
-                        {{ trans('globle.list') }}
                     </a>
                 </li>
                 @endcan

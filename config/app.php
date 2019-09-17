@@ -177,7 +177,13 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-    ],
+        /*
+         Qrcode Generate Service Providers.... 
+        */
+
+         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
+     ],
 
     /*
     |--------------------------------------------------------------------------
@@ -227,6 +233,11 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Datatables' => Yajra\DataTables\Facades\DataTables::class,
+
+        /*
+        Generate qrcode 
+         */
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 
     ],
 
