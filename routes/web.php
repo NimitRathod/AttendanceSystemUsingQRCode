@@ -1,16 +1,4 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 /* Route::get('/', function () {
     return view('welcome');
 }); */
@@ -47,16 +35,16 @@ Route::group(['prefix'=>'/bck','middleware' => ['auth']], function () {
     Route::get('permissions/getData', ['as'=>'permissions.getData','uses'=>'spatie\PermissionController@getData']);
     Route::resource('permissions', 'spatie\PermissionController');
 
-
+    // QR-Code
     Route::resource('qrcode','Backend\qrcodecontroller');
 
-    Route::get('qrcode', function () {
-      \QrCode::size(500)
-      ->format('png')
-      ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
-  })->name('qrcode');
+    Route::get('qrcode','Backend\qrcodecontroller@genrate_qr_code')->name('qrcode');
 
+    // Call the Chanhe Password blade file
     Route::view('changePassword', 'backend.templates.All_Pages.changePassword')->name('change_password');
+    // Request the Change password Method
+    Route::post('changePassword', 'Auth\Custom\CustomController@reset')->name('change_password.reset');
+
 
 
 });

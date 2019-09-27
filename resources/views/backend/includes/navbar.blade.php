@@ -80,7 +80,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title bg-danger">Ready to Leave?</h4>
+                <h4 class="modal-title">Ready to Leave?</h4>
             </div>
             <div class="modal-body">
                 <p>Select "Logout" below if you are ready to end your current session.</p>

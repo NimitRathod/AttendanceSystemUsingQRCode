@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('userData', 'API\UserController@getData');
+Route::get('insert', 'API\UserController@index');
+Route::middleware('auth:api')->group( function () {
+});

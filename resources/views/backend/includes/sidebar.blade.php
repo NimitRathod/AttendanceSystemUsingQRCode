@@ -28,6 +28,7 @@
             || explode(".",Request::route()->getName())[0] == 'permissions') {{ 'active' }}
             @endif">
 
+            @can('user_management_access')
             <a href="#">
                 <i class="fa fa-users"></i> <span>User Management</span>
                 <span class="pull-right-container">
@@ -45,7 +46,7 @@
                 </li>
                 @endcan
                 {{-- Role MAnagement --}}
-                @can('role-create')
+                @can('role-list')
                 <li class="@if(explode(".",Request::route()->getName())[0] == 'roles') {{ 'active' }} @endif">
                     <a href="{{ route('roles.index') }}">
                         <i class="fa fa-briefcase"></i>
@@ -63,6 +64,7 @@
                 </li>
                 @endcan
             </ul>
+            @endcan
         </li>
 
         <li class="treeview @if(explode(".",Request::route()->getName())[0] == 'permissions') {{ 'active' }} @endif">
@@ -73,46 +75,26 @@
                 </span>
             </a>
             <ul class="treeview-menu">
-                @can('user-create')
                 <li class="@if(explode(".",Request::route()->getName())[0] == 'permissions') {{ 'active' }} @endif">
                     <a href="{{ route('qrcode.create') }}">
                         <i class="fa fa-users"></i>
                         {{ trans('globle.create') }}
                     </a>
                 </li>
-                @endcan
             </ul>
         </li>
-        {{-- <li class="treeview @if(explode(".",Request::route()->getName())[0] == 'permissions') {{ 'active' }} @endif">
-            <a href="#">
-                <i class="fa fa-briefcase"></i> <span>Permissions Manage</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                @can('user-create')
-                <li class="@if(explode(".",Request::route()->getName())[0] == 'permissions') {{ 'active' }} @endif">
-                    <a href="{{ route('permissions.create') }}">
-                        <i class="fa fa-users"></i>
-                        {{ trans('globle.create') }}
-                    </a>
-                </li>
-                @endcan
-                @can('user-list')
-                <li class="@if(explode(".",Request::route()->getName())[0] == 'permissions') {{ 'active' }} @endif">
-                    <a href="{{ route('permissions.index') }}">
-                        <i class="fa fa-list"></i>
-                        {{ trans('globle.list') }}
-                    </a>
-                </li>
-                @endcan
-            </ul>
-        </li> --}}
-        <li class="@if(explode(".",Request::route()->getName())[0] == 'permissions') {{ 'active' }} @endif">
+        <!-- Students Module -->
+        <li class="@if(explode(".",Request::route()->getName())[0] == 'changePassword') {{ 'active' }} @endif">
             <a href="{{ route('change_password') }}">
-                <i class="fa fa-list"></i>
-                Change Password
+                <i class="fa fa-key"></i>
+                <span> Change Password </span>
+            </a>
+        </li>
+        <!-- Over Students Module -->
+        <li class="@if(explode(".",Request::route()->getName())[0] == 'changePassword') {{ 'active' }} @endif">
+            <a href="{{ route('change_password') }}">
+                <i class="fa fa-key"></i>
+                <span> Change Password </span>
             </a>
         </li>
     </li>

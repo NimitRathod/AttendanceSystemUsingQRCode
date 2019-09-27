@@ -5,8 +5,6 @@ $title = ucfirst(explode(".",Request::route()->getName())[0]); ?>
 @endsection
 
 @section('styleFile')
-<!-- Custom styles for this page -->
-<link href="{{ asset('backend/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @endsection
 
 {{-- style code --}}
@@ -28,8 +26,8 @@ $title = ucfirst(explode(".",Request::route()->getName())[0]); ?>
             <h3 class="box-title">{{  'Create'  }} {{ $title }}</h3>
         </div>
         <!-- /.box-header -->
-
-        {!! QrCode::size(250)->generate('ItSolutionStuff.com'); !!}
+        {!! $qr !!}
+        {{-- {!! QrCode::size(250)->generate('ItSolutionStuff.com'); !!} --}}
         <!-- form start -->
     </div>
 
@@ -38,17 +36,7 @@ $title = ucfirst(explode(".",Request::route()->getName())[0]); ?>
 @endsection
 
 @section('scriptFile')
-{{-- Data Table js --}}
-<script src="{{ asset('backend/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('backend/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-
-<script src="{{ asset('backend/js/demo/datatables-demo.js') }}"></script>
 @endsection
 
 @section('footerScript')
-<script>
-    // $(document).ready(function(){
-        //     alert("Permission");
-        // });
-    </script>
-    @endsection
+@endsection

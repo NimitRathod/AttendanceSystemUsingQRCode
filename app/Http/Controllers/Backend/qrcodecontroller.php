@@ -4,12 +4,13 @@ namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Auth;
 
 class qrcodecontroller extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * Display a listing of th$dt     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -24,7 +25,9 @@ class qrcodecontroller extends Controller
      */
     public function create()
     {
-        return view('backend.templates.Qrcode.create');
+        $qr = $this->genrate_qr_code();
+        // dd($qr);
+        return view('backend.templates.Qrcode.create',compact('qr'));
     }
 
     /**
@@ -35,7 +38,7 @@ class qrcodecontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd("ok");
     }
 
     /**
@@ -81,5 +84,19 @@ class qrcodecontroller extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function genrate_qr_code(){
+        // $dt = Carbon::today();
+        $dt = Carbon::now()->toDateString();
+        $host = request()->getHttpHost();
+        
+        $qr = "http://".$host."/api/insert?insert=".$dt.'&user='.Auth::user()->id;
+        // $qr = "http://nhrathod.cf/";
+        // $qr = "nhrathod.cf/"; // => this is wrong 
+        return \QrCode::size(250)->generate($qr);
+        // \QrCode::size(500)
+        // ->format('png')
+        // ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
     }
 }

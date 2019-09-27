@@ -22,7 +22,7 @@ echo $title;
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Blank page
+            Blank page 1
             <small>it all starts here</small>
         </h1>
         <ol class="breadcrumb">
@@ -66,11 +66,7 @@ echo $title;
 @endsection
 
 @section('scriptFile')
-{{-- Data Table js --}}
-<script src="{{ asset('backend/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('backend/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
-<script src="{{ asset('backend/js/demo/datatables-demo.js') }}"></script>
 @endsection
 
 @section('footerScript')
