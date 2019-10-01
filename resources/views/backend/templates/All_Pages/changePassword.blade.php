@@ -79,11 +79,6 @@ echo $title;
 @endsection
 
 @section('scriptFile')
-{{-- Data Table js --}}
-<script src="{{ asset('backend/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('backend/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-
-<script src="{{ asset('backend/js/demo/datatables-demo.js') }}"></script>
 @endsection
 
 @section('footerScript')

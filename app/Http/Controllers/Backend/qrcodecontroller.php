@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Auth;
+use Hash;
 
 class qrcodecontroller extends Controller
 {
@@ -90,8 +91,9 @@ class qrcodecontroller extends Controller
         // $dt = Carbon::today();
         $dt = Carbon::now()->toDateString();
         $host = request()->getHttpHost();
-        
-        $qr = "http://".$host."/api/insert?insert=".$dt.'&user='.Auth::user()->id;
+        $lectures = 1;
+        $qr_bind = "insert=".$dt.'&user='.Auth::user()->id."&lectures=".$lectures;
+        $qr = "http://".$host."/api/insert?".$qr_bind;
         // $qr = "http://nhrathod.cf/";
         // $qr = "nhrathod.cf/"; // => this is wrong 
         return \QrCode::size(250)->generate($qr);

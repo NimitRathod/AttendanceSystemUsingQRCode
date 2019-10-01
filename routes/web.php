@@ -14,6 +14,9 @@ Auth::routes(['register' => false]);
 // Backend Default Page
 Route::group(['prefix'=>'/bck','middleware' => ['auth']], function () {
 
+    // Dashboard Page
+    Route::get('/', 'HomeController@dashboard')->name('dashboard');
+
     Route::get('/default', function () {
         return view('backend.default');
     });
@@ -23,10 +26,7 @@ Route::group(['prefix'=>'/bck','middleware' => ['auth']], function () {
         return view('backend.templates.profile.show');
     });
 
-    // Dashboard Page
-    Route::get('/', function () {
-        return view('backend.templates.empty_page');
-    });
+    
 
     Route::get('users/getData', ['as'=>'users.getData','uses'=>'spatie\UserController@getData']);
     Route::resource('users', 'spatie\UserController');
@@ -39,6 +39,13 @@ Route::group(['prefix'=>'/bck','middleware' => ['auth']], function () {
     Route::resource('qrcode','Backend\qrcodecontroller');
 
     Route::get('qrcode','Backend\qrcodecontroller@genrate_qr_code')->name('qrcode');
+
+    /*************************************************************
+    **                  Student Master                          **
+    *************************************************************/
+    Route::get('students/getData', ['as'=>'students.getData','uses'=>'Backend\StudentsMasterController@getData']);
+    Route::resource('students','Backend\StudentsMasterController');
+
 
     // Call the Chanhe Password blade file
     Route::view('changePassword', 'backend.templates.All_Pages.changePassword')->name('change_password');

@@ -9,14 +9,14 @@
             </div>
             <div class="pull-left info">
                 <p>{{ Auth::user()->name}}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <a href="{{ route('dashboard') }}"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="@if(explode(".",Request::route()->getName())[0] == '') {{ 'active' }} @endif">
-                <a href="/">
+            <li class="@if(explode(".",Request::route()->getName())[0] == 'dashboard') {{ 'active' }} @endif">
+                <a href="{{ route('dashboard') }}">
                     <i class="fa fa-circle-o"></i>
                     <span> Dashboard</span>
                 </a>
@@ -67,7 +67,9 @@
             @endcan
         </li>
 
-        <li class="treeview @if(explode(".",Request::route()->getName())[0] == 'permissions') {{ 'active' }} @endif">
+        <!-- Scan Qr Code -->
+        @can('scan-qr-code')
+        <li class="treeview @if(explode(".",Request::route()->getName())[0] == 'qrcode') {{ 'active' }} @endif">
             <a href="#">
                 <i class="fa fa-qrcode" aria-hidden="true"></i> <span>QRCode Manage</span>
                 <span class="pull-right-container">
@@ -83,20 +85,30 @@
                 </li>
             </ul>
         </li>
+        @endcan
+        <!-- Over Scan Qr Code -->
+
         <!-- Students Module -->
-        <li class="@if(explode(".",Request::route()->getName())[0] == 'changePassword') {{ 'active' }} @endif">
-            <a href="{{ route('change_password') }}">
-                <i class="fa fa-key"></i>
-                <span> Change Password </span>
+        @can('student_access')
+        <li class="@if(explode(".",Request::route()->getName())[0] == 'students') {{ 'active' }} @endif">
+            <a href="{{ route('students.index') }}">
+                <i class="fa fa-users"></i>
+                <span> Students Master </span>
             </a>
         </li>
+        @endcan
         <!-- Over Students Module -->
-        <li class="@if(explode(".",Request::route()->getName())[0] == 'changePassword') {{ 'active' }} @endif">
+       
+       <!-- Change Password -->
+        @can('change_password')
+        <li class="@if(explode(".",Request::route()->getName())[0] == 'change_password') {{ 'active' }} @endif">
             <a href="{{ route('change_password') }}">
                 <i class="fa fa-key"></i>
                 <span> Change Password </span>
             </a>
         </li>
+        @endcan
+       <!-- Over Change Password -->
     </li>
 </ul>
 </section>

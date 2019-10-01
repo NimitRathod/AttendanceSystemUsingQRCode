@@ -11,6 +11,7 @@ $title = ucfirst(explode(".",Request::route()->getName())[0]); ?>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 @endsection
 
 {{-- style code --}}
@@ -30,9 +31,9 @@ $title = ucfirst(explode(".",Request::route()->getName())[0]); ?>
         <div class="box-header">
             <h3 class="box-title">{{ $title }} List</h3>
             @can('user-create')
-            <a href="{{ route('users.create') }}" class="btn btn-success pull-right" >
+            <a href="{{ route('students.create') }}" class="btn btn-success pull-right" >
                 <i class="ft-plus"></i>
-                Add
+                Import Data
             </a>
             @endcan
         </div>
@@ -42,32 +43,15 @@ $title = ucfirst(explode(".",Request::route()->getName())[0]); ?>
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>EMail</th>
-                        <th>Role</th>
-                        <th>Action</th>
+                        <th>Email</th>
+                        <th>Batch</th>
+                        <th>Division</th>
+                        <!-- <th style="width: 15%;">Action</th> -->
                     </tr>
                 </thead>
             </table>
         </div>
         <!-- /.box-body -->
-        <!-- Delete Data Confirem Modal  -->
-        <div id="confirmModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h2 class="modal-title">Confirmation</h2>
-                    </div>
-                    <div class="modal-body">
-                        <h4 align="center" style="margin:0;">Are you sure you want to remove this data?</h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" name="ok_button" id="btn_ok_delete" class="btn btn-danger">OK</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
 </section>
@@ -84,61 +68,26 @@ $title = ucfirst(explode(".",Request::route()->getName())[0]); ?>
 <script type="text/javascript">
 
     $(document).ready(function() {
-        var URL = "{{ route('users.getData') }}";
+        var URL = "{{ route('students.getData') }}";
+        // alert(URL);
         var _DataTable =  $('#data_table').DataTable({
             "processing": true,
             "serverSide": true,
             "autoWidth" : true,
+            "responsive": true,
             "lengthMenu": [
             [ 10, 25, 50, -1 ],
             [ '10', '25', '50', 'All' ]
             ],
-            "order": [[2, 'desc']],
+            "order": [[0, 'desc']],
             "ajax": URL,
             "columns": [
-            {data: 'name'},
-            {data: 'email'},
-            {data: 'role'},
-            {data: 'action', orderable: false, searchable: false}
+            {data: 'userName'},
+            {data: 'userEmail'},
+            {data: 'batch'},
+            {data: 'division'}
+            // {data: 'action', orderable: false, searchable: false}
             ],
-            dom: 'lBfrtip<"actions">',
-            buttons: [
-            {
-                extend: 'copy',
-                text: "<span class='fa fa-clipboard'></span> Copy",
-                exportOptions: {
-                    columns: ':visible'
-                }
-            },
-            {
-                extend: 'csv',
-                text: "<span class='fa fa-file'></span> CSV",
-                exportOptions: {
-                    columns: ':visible'
-                }
-            },
-            {
-                extend: 'excel',
-                text: "<span class='fa fa-file-excel-o'></span> Excel",
-                exportOptions: {
-                    columns: ':visible'
-                }
-            },
-            {
-                extend: 'print',
-                text: "<span class='fa fa-print'></span> Print",
-                oSelectorOpts: {
-                    page: 'all'
-                },
-            },
-            {
-                extend: 'colvis',
-                text: "<span class='fa fa-eye'></span> Column Visible",
-                exportOptions: {
-                    columns: ':visible'
-                }
-            },
-            ]
         });
 
         _DataTable.buttons().container().appendTo('#data_table_wrapper .col-sm-6:eq(0)' );
@@ -180,7 +129,7 @@ $title = ucfirst(explode(".",Request::route()->getName())[0]); ?>
     $(document).on('click', '.edit', function () {
         var id = $(this).data("edit-id");
         var URL = "/bck/users/" +id+"/edit";
-        window.location.href = URL;
+        // window.location.href = URL;
     });
 </script>
 @endsection

@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// Model
+use App\User;
+use App\Model\StudentsMaster;
+
+
+
 class HomeController extends Controller
 {
     /**
@@ -24,5 +30,14 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function dashboard(){
+        $users = array(
+            'count' => StudentsMaster::with(['Users'])->count(),
+            'title' => "Students"
+        );
+        return view('backend.templates.dashboard',compact('users'));
+
     }
 }
